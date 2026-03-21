@@ -9,6 +9,8 @@ CREATE TABLE IF NOT EXISTS entregas (
     numero_pedido VARCHAR(50) NOT NULL UNIQUE,
     veiculo_placa VARCHAR(7),
     motorista_id BIGINT,
+    motorista_nome VARCHAR(100),
+    veiculo_modelo VARCHAR(100),
     origem_endereco VARCHAR(255) NOT NULL,
     origem_lat DECIMAL(10, 7),
     origem_lng DECIMAL(10, 7),
