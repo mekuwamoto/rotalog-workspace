@@ -68,10 +68,21 @@ cd rotalog-workspace
 docker-compose up -d postgres
 ```
 
-This creates PostgreSQL with three schemas:
-- `frotas` - for api-frotas
-- `entregas` - for api-entregas
-- `notificacoes` - for api-notificacoes
+This creates PostgreSQL with three schemas and automatically populates them with seed data:
+- `frotas` - for api-frotas (10 veículos, 8 motoristas, 6 manutenções)
+- `entregas` - for api-entregas (20 entregas, 42 rastreamentos)
+- `notificacoes` - for api-notificacoes (10 templates, 10 notificações)
+
+The scripts in `tools/scripts/` are executed automatically in order:
+1. `01-init.sql` - Create schemas and permissions
+2. `02-migration-frotas.sql` - Create frotas tables
+3. `03-migration-entregas.sql` - Create entregas tables
+4. `04-migration-notificacoes.sql` - Create notificacoes tables
+5. `05-seed-frotas.sql` - Populate frotas data
+6. `06-seed-entregas.sql` - Populate entregas data
+7. `07-seed-notificacoes.sql` - Populate notificacoes data
+
+> **Nota**: Os scripts só são executados na primeira inicialização do container. Para recriar o banco do zero: `docker-compose down -v && docker-compose up -d postgres`
 
 ### Start Services
 
