@@ -26,6 +26,24 @@ services:
     # TODO: Add resource limits
     # TODO: Add backup strategy
 
+  api-notificacoes:
+    build:
+      context: ../rotalog-api-notificacoes
+      dockerfile: Dockerfile
+    container_name: rotalog-api-notificacoes
+    ports:
+      - "5000:5000"
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=rotalog;Username=rotalog_admin;Password=rotalog123"
+      ApiKey: "rotalog-api-key"
+      ExternalServices__ApiFrotasUrl: "http://api-frotas:8080"
+      ExternalServices__ApiEntregasUrl: "http://api-entregas:3000"
+      ASPNETCORE_ENVIRONMENT: "Production"
+    depends_on:
+      - postgres
+    networks:
+      - rotalog-network
+
   # TODO: Add Redis service
   # TODO: Add Kafka service
   # TODO: Add Elasticsearch service
