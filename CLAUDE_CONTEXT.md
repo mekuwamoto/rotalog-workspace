@@ -91,7 +91,7 @@ O projeto foi construído iterativamente com os seguintes marcos principais:
 
 4. **API Notificações (Porta 5000):**
    ```bash
-   cd rotalog-api-notificacoes
+   cd rotalog-api-notificacoes/src
    dotnet restore
    dotnet run
    ```
